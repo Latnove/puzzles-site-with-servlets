@@ -1,0 +1,26 @@
+services:
+  servlet_app:
+    build: ../../../../../Desktop/docker
+    depends_on:
+      - postgres
+    env_file:
+      - ../../../../../Desktop/docker/.env
+    ports:
+      - '18081:8080'
+
+  postgres:
+    image: postgres:16
+    container_name: puzzles_db
+    env_file:
+      - ../../../../../Desktop/docker/.env
+    environment:
+      POSTGRES_DB: ${DB_NAME:-postgres}
+      POSTGRES_USER: ${DB_USER:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    ports:
+      - '15433:5432'
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+volumes:
+  pg_data:

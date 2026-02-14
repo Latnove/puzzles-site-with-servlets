@@ -1,0 +1,33 @@
+.particle {
+	position: fixed;
+	width: 5px;
+	height: 5px;
+	border-radius: 50%;
+	background-color: var(--color);
+	box-shadow: 0 0 8px var(--color), 0 0 10px var(--color);
+	will-change: transform, opacity;
+	animation: explode 1.2s ease-out forwards;
+	z-index: 101;
+}
+
+.particle-container {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	background: #00000055;
+	z-index: 100;
+	transition: var(--transition);
+}
+
+@keyframes explode {
+	from {
+		transform: translate(0, 0) scale(1.2);
+		opacity: 1;
+	}
+	to {
+		transform: translate(var(--x), var(--y)) scale(0);
+		opacity: 0;
+	}
+}
